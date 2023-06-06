@@ -38,6 +38,23 @@ export class ProductManager {
     }
 
     addProduct = async ({ title, description, price, stock, category, thumbnails }) => {
+
+        !title
+            ? this.#error = 'Falta title'
+            : !description
+                ? this.#error = 'Falta description'
+                : !price
+                    ? this.#error = 'Falta price'
+                    : !stock
+                        ? this.#error = 'Falta Stock'
+                        : !category
+                            ? this.#error = 'Falta Category'
+                            : this.#error = null
+
+        if(this.#error){
+            return {error: this.#error}
+        }
+
         let fileExist = fs.existsSync(this.#path)
 
         if(!fileExist){

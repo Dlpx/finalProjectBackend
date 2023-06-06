@@ -35,17 +35,19 @@ productsRouter.get('/:pid', async (req, res) => {
 
 productsRouter.post('/', async (req, res) => {
     const { title, description, price, stock, category, thumbnails } = req.body
-    if( !title || !description || !price || !stock || !category ){
-        return res.status(400).json({status: 'Failed', message: 'Faltan Datos'})
+    
+    const newProductAdded = await Products.addProduct({
+        title: title,
+        description: description,
+        price: price,
+        stock: stock,
+        category: category,
+        thumbnails: thumbnails
+    })
+
+    if(newProductAdded?.error){
+        return res.status(400).json({status: 'Failed', message: 'Faltan Datos', error: newProductAdded.error})
     } else {
-        await Products.addProduct({
-            title: title,
-            description: description,
-            price: price,
-            stock: stock,
-            category: category,
-            thumbnails: thumbnails
-        })
         return res.status(200).json({status: 'Success', message: `Producto agregado con exito, Title: ${title}`})
     }
 })

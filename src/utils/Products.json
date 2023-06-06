@@ -1,0 +1,52 @@
+[
+	{
+		"id": 1,
+		"title": "Cortadora de cesped",
+		"description": "Cortadora de cesped STILL, poderosisima.",
+		"code": "1001",
+		"price": 180000,
+		"status": true,
+		"stock": 20,
+		"category": "Jardin"
+	},
+	{
+		"id": 2,
+		"title": "Lustramuebles",
+		"description": "Lustramuebles marca Premium, para que tu silla brille tanto como tu trasero",
+		"code": "1002",
+		"price": 800,
+		"status": true,
+		"stock": 80,
+		"category": "Limpieza"
+	},
+	{
+		"id": 3,
+		"title": "Lampara de sala",
+		"description": "Lampara de sala marca Home&Deco, para que no andes mas en tinieblas mi ciela",
+		"code": "1003",
+		"price": 60000,
+		"status": true,
+		"stock": 15,
+		"category": "Hogar y Decoracion"
+	},
+	{
+		"id": 4,
+		"title": "Lustrador de carrocerias",
+		"description": "Lustrador de carros para que tu auto brille mas que el de tu vecino",
+		"code": "1004",
+		"price": 5000,
+		"status": true,
+		"stock": 100,
+		"category": "Autos"
+	},
+	{
+		"id": 5,
+		"title": "Set de cubiertos dorados",
+		"description": "Set de cubiertos marca Eleonore, muy bellos, para que los comensales se deslumbren y se olviden de tu falta de sazon",
+		"code": "1005",
+		"price": 18000,
+		"status": true,
+		"stock": 20,
+		"category": "Cocina"
+	}
+]

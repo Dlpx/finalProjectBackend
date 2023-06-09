@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ProductManager } from "../helpers/ProductManager.js";
+import { multerUploader } from "../utils.js";
 
 const productsRouter = Router()
 
@@ -33,9 +34,14 @@ productsRouter.get('/:pid', async (req, res) => {
     }
 })
 
-productsRouter.post('/', async (req, res) => {
-    const { title, description, price, stock, category, thumbnails } = req.body
+//Aca quiero que primero se intente subir el archivo, y que luego vaya la imagen, porque sino en cada validacion se me va a estar subiendo un archivo nuevo a las imagenes.. 
+productsRouter.post('/', multerUploader.single('fotoProd'), async (req, res) => {
+    const { title, description, price, stock, category } = req.body
     
+    if(!req.file) return res.status(400).json({status: 'Failed', message: "Falta la foto"})
+
+    const thumbnails = req.file.filename
+
     const newProductAdded = await Products.addProduct({
         title: title,
         description: description,
@@ -46,8 +52,10 @@ productsRouter.post('/', async (req, res) => {
     })
 
     if(newProductAdded?.error){
+        console.log(req.file)
         return res.status(400).json({status: 'Failed', message: 'Faltan Datos', error: newProductAdded.error})
     } else {
+        console.log(req.file)
         return res.status(200).json({status: 'Success', message: `Producto agregado con exito, Title: ${title}`})
     }
 })

@@ -49,7 +49,9 @@ export class ProductManager {
                         ? this.#error = 'Falta Stock'
                         : !category
                             ? this.#error = 'Falta Category'
-                            : this.#error = null
+                            : !thumbnails
+                                ? this.#error = 'Falta la foto'
+                                : this.#error = null
 
         if(this.#error){
             return {error: this.#error}
@@ -64,7 +66,6 @@ export class ProductManager {
         let currentProducts = await this.getProducts()
 
         let id = this.#idGenerator(currentProducts)
-
         
         this.#productsActualization.push(
             ...currentProducts,
@@ -77,7 +78,7 @@ export class ProductManager {
                 status: true,
                 stock,
                 category,
-                thumbnails
+                thumbnails: [thumbnails]
             }
         )
 
@@ -105,6 +106,15 @@ export class ProductManager {
 
         
         return await fs.promises.writeFile(this.#path, JSON.stringify(currentProducts, null, '\t'))
+    }
+
+    addThumbnails = async ({pid, thumbnails}) => {
+        let products = await this.getProducts()
+        const prodIndex = products.findIndex(item => item.id == pid)
+
+        products[prodIndex].thumbnails = [...thumbnails]
+
+        return await fs.promises.writeFile(this.#path, JSON.stringify(products, null, '\t'))
     }
 
     deleteProduct = async ({pid}) => {

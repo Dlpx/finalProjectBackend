@@ -7,7 +7,8 @@
 		"price": 180000,
 		"status": true,
 		"stock": 20,
-		"category": "Jardin"
+		"category": "Jardin",
+		"thumbnails": []
 	},
 	{
 		"id": 2,
@@ -17,7 +18,8 @@
 		"price": 800,
 		"status": true,
 		"stock": 80,
-		"category": "Limpieza"
+		"category": "Limpieza",
+		"thumbnails": []
 	},
 	{
 		"id": 3,
@@ -27,7 +29,8 @@
 		"price": 60000,
 		"status": true,
 		"stock": 15,
-		"category": "Hogar y Decoracion"
+		"category": "Hogar y Decoracion",
+		"thumbnails": []
 	},
 	{
 		"id": 4,
@@ -37,7 +40,8 @@
 		"price": 5000,
 		"status": true,
 		"stock": 100,
-		"category": "Autos"
+		"category": "Autos",
+		"thumbnails": []
 	},
 	{
 		"id": 5,
@@ -47,6 +51,7 @@
 		"price": 18000,
 		"status": true,
 		"stock": 20,
-		"category": "Cocina"
+		"category": "Cocina",
+		"thumbnails": []
 	}
 ]

@@ -2,6 +2,9 @@ import express from "express";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 
+const PORT = 8080
+
+
 
 const app = express()
 app.use(express.json())
@@ -15,4 +18,4 @@ app.use('/api/carts', cartsRouter)
 
 
 
-app.listen(8080, () => console.log('Server is UP'))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

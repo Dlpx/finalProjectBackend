@@ -5,32 +5,50 @@ import { multerUploader } from "../utils.js";
 const productsRouter = Router()
 
 
-const Products = new ProductManager('./src/utils/Products.json')
 
+const Products = new ProductManager('./src/utils/Products.json')
 
 productsRouter.get('/', async (req, res) => {
     const limit = req.query.limit
     const products = await Products.getProducts()
 
     if(!limit){
-        res.status(200).json({ status: 'Success', message: 'Productos Obtenidos', payload: [...products] })
+        return res.render('home', {
+            nombre__vista: 'Home - Products',
+            products: products,
+        });
+        // res.status(200).json({ status: 'Success', message: 'Productos Obtenidos', payload: [...products] })
     } else {
         let arrayLimted = []
         for(let i = 0; i < limit; i++){
-            arrayLimted.push(products[i])
-        }
-        res.status(200).json({ status: 'Success', message: 'Productos Obtenidos', payload: [...arrayLimted] })
+            arrayLimted.push(products[i]);
+        };
+        return res.render('home', {
+            nombre__vista:'Home - Products',
+            products:arrayLimted,
+        });
+        // res.status(200).json({ status: 'Success', message: 'Productos Obtenidos', payload: [...arrayLimted] })
     }
 })
 
 productsRouter.get('/:pid', async (req, res) => {
     const pid = req.params.pid
-    const product = await Products.getProductsById(Number(pid))
+    let product = await Products.getProductsById(Number(pid))
 
     if(product.error){
-        return res.status(404).json({status: 'Failed', message: 'Producto no encontrado', error: product.error})
+        return res.render('error404', {
+            nombre__vista:'ERROR - 404 not Found',
+            status:'Failed',
+            message: 'Producto no encontrado',
+            error: product.error
+        });
+        // return res.status(404).json({status: 'Failed', message: 'Producto no encontrado', error: product.error})
     } else {
-        return res.status(200).json({status: 'Success', message: 'Producto Obtenido', payload: [product]})
+        res.render('home', {
+            nombre__vista:'Home - Products',
+            products:[product],
+        });
+        // return res.status(200).json({status: 'Success', message: 'Producto Obtenido', payload: [product]})
     }
 })
 

@@ -1,0 +1,20 @@
+<div>
+    <h3>Listado de productos:</h3>
+
+
+    <div class="boxContainer">
+        {{#each products}}
+            <div class="box">
+                <h4>{{this.title}}</h4>
+                <small>{{this.description}}</small>
+                <div class="imgSlider">
+                    {{#each this.thumbnails}}
+                        <img src={{this.url}} alt={{this.name}}>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+
+</div>
